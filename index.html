@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="ka" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Tech | ტექნოლოგიური და კიბერუსაფრთხოების კონსალტინგი</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            glow: '#38bdf8'
+                        },
+                        darkbg: '#0b0f19',
+                        darkcard: '#111827',
+                        darkborder: '#1f2937'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'BPG Nino Mtavruli', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(129, 140, 248, 0.1));
+            padding: 1px;
+        }
+        .glow-effect {
+            box-shadow: 0 0 35px -5px rgba(56, 189, 248, 0.25);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-slate-100 transition-colors duration-300 min-h-screen flex flex-col custom-scrollbar selection:bg-brand-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight text-white dark:text-white light:text-slate-900">AEGIS<span class="text-brand-glow">TECH</span></span>
+                    <span class="text-[10px] tracking-widest text-slate-400 uppercase font-semibold">Cyber & Cloud Advisory</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 bg-slate-900/60 light:bg-slate-100/80 p-1.5 rounded-full border border-slate-800 light:border-slate-200">
+                <button id="nav-btn-home" onclick="navigateTo('home')" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-white bg-brand-600 shadow-md">
+                    <i class="fa-solid fa-house-laptop mr-2 text-xs"></i>მთავარი & სერვისები
+                </button>
+                <button id="nav-btn-audit" onclick="navigateTo('audit')" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white light:text-slate-600 light:hover:text-slate-900">
+                    <i class="fa-solid fa-calculator mr-2 text-xs"></i>აუდიტი & კალკულატორი
+                </button>
+            </nav>
+
+            <!-- Actions Right -->
+            <div class="hidden md:flex items-center space-x-4">
+                <!-- Dark / Light Theme Toggle -->
+                <button id="theme-toggle" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 text-slate-300 light:text-slate-700 hover:text-white transition-all duration-200 hover:bg-slate-700" title="თემის შეცვლა">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <!-- CTA Button -->
+                <button onclick="navigateTo('audit')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-brand-500/20 hover:shadow-brand-500/40 hover:-translate-y-0.5 flex items-center space-x-2">
+                    <span>მოითხოვეთ აუდიტი</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="theme-toggle-mobile" onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-800 text-slate-300">
+                    <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 light:bg-white border-b border-slate-800 px-4 pt-3 pb-6 space-y-3">
+            <button onclick="navigateTo('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl bg-slate-800/50 text-white font-medium flex items-center space-x-3">
+                <i class="fa-solid fa-house-laptop text-brand-glow"></i>
+                <span>მთავარი & სერვისები</span>
+            </button>
+            <button onclick="navigateTo('audit'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl bg-slate-800/50 text-white font-medium flex items-center space-x-3">
+                <i class="fa-solid fa-calculator text-brand-glow"></i>
+                <span>აუდიტი & კალკულატორი</span>
+            </button>
+            <button onclick="navigateTo('audit'); toggleMobileMenu();" class="w-full py-3 rounded-xl bg-brand-600 text-white text-center font-semibold shadow-lg">
+                მოითხოვეთ აუდიტი
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Container -->
+    <main class="flex-grow">
+
+        <!-- ========================================== -->
+        <!-- PAGE 1: HOME / SERVICES DASHBOARD          -->
+        <!-- ========================================== -->
+        <div id="page-home" class="page-content block">
+            
+            <!-- Hero Section -->
+            <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+                <!-- Background Accent Glows -->
+                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        
+                        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-glow text-xs font-semibold uppercase tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-brand-glow animate-pulse"></span>
+                                <span>უმაღლესი სტანდარტის კიბერუსაფრთხოება</span>
+                            </div>
+
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                                დაიცავით ციფრული ინფრასტრუქტურა <span class="gradient-text">Aegis Tech-თან</span> ერთად
+                            </h1>
+
+                            <p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                                ჩვენ ვუზრუნველყოფთ კორპორატიული სისტემების უსაფრთხოებას, ღრუბლოვან არქიტექტურას, Penetration Testing-ს და ISO/IEC 27001 სტანდარტებთან შესაბამისობას.
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-2">
+                                <button onclick="navigateTo('audit')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-semibold text-base transition-all duration-300 shadow-xl shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-1 flex items-center justify-center space-x-3">
+                                    <span>უსაფრთხოების აუდიტი</span>
+                                    <i class="fa-solid fa-shield-virus"></i>
+                                </button>
+                                <a href="#services-section" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-semibold text-base transition-all duration-200 border border-slate-700/80 text-center">
+                                    სერვისების ნახვა
+                                </a>
+                            </div>
+
+                            <!-- Trust Metrics / Stats -->
+                            <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80">
+                                <div class="text-center lg:text-left">
+                                    <div class="text-2xl sm:text-3xl font-extrabold text-white gradient-text">99.9%</div>
+                                    <div class="text-xs sm:text-sm text-slate-400">დაცული ინციდენტი</div>
+                                </div>
+                                <div class="text-center lg:text-left">
+                                    <div class="text-2xl sm:text-3xl font-extrabold text-white gradient-text">150+</div>
+                                    <div class="text-xs sm:text-sm text-slate-400">კორპორატიული კლიენტი</div>
+                                </div>
+                                <div class="text-center lg:text-left">
+                                    <div class="text-2xl sm:text-3xl font-extrabold text-white gradient-text">24/7</div>
+                                    <div class="text-xs sm:text-sm text-slate-400">SOC მონიტორინგი</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Interactive Card Widget -->
+                        <div class="lg:col-span-5">
+                            <div class="relative mx-auto max-w-md lg:max-w-none">
+                                <div class="glass-panel rounded-2xl p-6 sm:p-8 shadow-2xl glow-effect border border-slate-700/50 space-y-6">
+                                    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                        </div>
+                                        <span class="text-xs font-mono text-slate-400">AEGIS-SOC-LIVE-v4.2</span>
+                                    </div>
+
+                                    <!-- Live Status Mock -->
+                                    <div class="space-y-4 font-mono text-sm">
+                                        <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <i class="fa-solid fa-network-wired text-brand-glow"></i>
+                                                <span class="text-slate-300">ქსელური ტრაფიკი</span>
+                                            </div>
+                                            <span class="text-emerald-400 text-xs font-semibold">ნორმალური</span>
+                                        </div>
+
+                                        <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <i class="fa-solid fa-bug text-indigo-400"></i>
+                                                <span class="text-slate-300">Pen-Test სტატუსი</span>
+                                            </div>
+                                            <span class="text-brand-glow text-xs font-semibold">აქტიური სკანირება</span>
+                                        </div>
+
+                                        <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <i class="fa-solid fa-lock text-amber-400"></i>
+                                                <span class="text-slate-300">მონაცემთა შიფრაცია</span>
+                                            </div>
+                                            <span class="text-slate-300 text-xs font-semibold">AES-256 GCM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-4 rounded-xl bg-brand-500/10 border border-brand-500/20 text-xs text-slate-300 space-y-2">
+                                        <div class="flex justify-between font-semibold text-brand-glow">
+                                            <span>უსაფრთხოების ინდექსი</span>
+                                            <span>98/100</span>
+                                        </div>
+                                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-brand-500 to-emerald-400 h-full w-[98%] rounded-full"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Services Section -->
+            <section id="services-section" class="py-20 bg-slate-950/50 border-t border-slate-800/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center space-y-4 mb-12">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">ექსპერტული სერვისები</h2>
+                        <p class="text-slate-400 max-w-2xl mx-auto text-base">
+                            აირჩიეთ კატეგორია და გაეცანით Aegis Tech-ის ინოვაციურ გადაწყვეტილებებს.
+                        </p>
+
+                        <!-- Filter Tabs -->
+                        <div class="flex flex-wrap justify-center gap-2 pt-4">
+                            <button onclick="filterServices('all')" class="service-tab-btn active px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-brand-600 text-white shadow-md" data-category="all">
+                                ყველა სერვისი
+                            </button>
+                            <button onclick="filterServices('cyber')" class="service-tab-btn px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white" data-category="cyber">
+                                კიბერუსაფრთხოება
+                            </button>
+                            <button onclick="filterServices('cloud')" class="service-tab-btn px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white" data-category="cloud">
+                                Cloud & DevOps
+                            </button>
+                            <button onclick="filterServices('audit')" class="service-tab-btn px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white" data-category="audit">
+                                აუდიტი & Compliance
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Services Grid -->
+                    <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Service Card 1 -->
+                        <div class="service-card glass-panel rounded-2xl p-6 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between" data-category="cyber">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-glow flex items-center justify-center text-xl mb-5">
+                                    <i class="fa-solid fa-user-ninja"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Penetration Testing</h3>
+                                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                                    სისტემური შეღწევადობის ტესტირება. მოწყვლადობების გამოვლენა რეალური ჰაკერული შეტევების სიმულაციით.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> სრული რეპორტი</span>
+                                <button onclick="selectServiceForAudit('Penetration Testing')" class="text-brand-glow hover:underline flex items-center space-x-1">
+                                    <span>შეკვეთა</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 2 -->
+                        <div class="service-card glass-panel rounded-2xl p-6 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between" data-category="cyber">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl mb-5">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">SOC 24/7 მონიტორინგი</h3>
+                                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                                    უსაფრთხოების ოპერაციების ცენტრი. უწყვეტი მონიტორინგი, ინციდენტებზე მყისიერი რეაგირება და SIEM ანალიტიკა.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Real-Time Alert</span>
+                                <button onclick="selectServiceForAudit('SOC 24/7 Monitoring')" class="text-brand-glow hover:underline flex items-center space-x-1">
+                                    <span>შეკვეთა</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 3 -->
+                        <div class="service-card glass-panel rounded-2xl p-6 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between" data-category="cloud">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-5">
+                                    <i class="fa-solid fa-cloud-shield"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Cloud Security & Architecture</h3>
+                                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                                    AWS, Azure და Google Cloud არქიტექტურის უსაფრთხოების ოპტიმიზაცია და DevSecOps პროცესების დანერგვა.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Multi-Cloud</span>
+                                <button onclick="selectServiceForAudit('Cloud Security Architecture')" class="text-brand-glow hover:underline flex items-center space-x-1">
+                                    <span>შეკვეთა</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 4 -->
+                        <div class="service-card glass-panel rounded-2xl p-6 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between" data-category="audit">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-5">
+                                    <i class="fa-solid fa-file-contract"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">ISO 27001 & GDPR Compliance</h3>
+                                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                                    საერთაშორისო სტანდარტებთან შესაბამისობის აუდიტი, პოლიტიკების შემუშავება და სერტიფიცირების მომზადება.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Legal Compliance</span>
+                                <button onclick="selectServiceForAudit('ISO 27001 Audit')" class="text-brand-glow hover:underline flex items-center space-x-1">
+                                    <span>შეკვეთა</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 5 -->
+                        <div class="service-card glass-panel rounded-2xl p-6 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between" data-category="cyber">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-5">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Security Awareness Training</h3>
+                                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                                    თანამშრომელთა გადამზადება Phishing შეტევების იმიტაციით და უსაფრთხოების კულტურის ამაღლება.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Phishing Simulation</span>
+                                <button onclick="selectServiceForAudit('Security Awareness Training')" class="text-brand-glow hover:underline flex items-center space-x-1">
+                                    <span>შეკვეთა</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 6 -->
+                        <div class="service-card glass-panel rounded-2xl p-6 hover:border-brand-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between" data-category="cloud">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-5">
+                                    <i class="fa-solid fa-diagram-project"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">DevSecOps Integration</h3>
+                                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                                    უსაფრთხოების ავტომატიზაცია CI/CD პაიპლაინებში და უსაფრთხო კოდინგის პრაქტიკების დანერგვა.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                                <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> CI/CD Security</span>
+                                <button onclick="selectServiceForAudit('DevSecOps Integration')" class="text-brand-glow hover:underline flex items-center space-x-1">
+                                    <span>შეკვეთა</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Assessment Widget -->
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-700/60 relative overflow-hidden">
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-6 space-y-6">
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand-glow bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+                                    ინტერაქტიული შეფასება
+                                </span>
+                                <h2 class="text-3xl font-extrabold text-white">შეამოწმეთ თქვენი კომპანიის რისკების ინდექსი</h2>
+                                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                                    მონიშნეთ თქვენი მიმდინარე ინფრასტრუქტურის პარამეტრები და მიიღეთ სავარაუდო რისკის დონე და რეკომენდაცია.
+                                </p>
+
+                                <div class="space-y-4 pt-2">
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-300 mb-2">თანამშრომლების რაოდენობა: <span id="emp-count-val" class="text-brand-glow font-bold">50</span></label>
+                                        <input type="range" id="emp-range" min="5" max="500" value="50" oninput="updateRiskAssessment()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <label class="block text-sm font-medium text-slate-300">უსაფრთხოების არსებული ზომები:</label>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                                            <label class="flex items-center space-x-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:bg-slate-800/50">
+                                                <input type="checkbox" id="chk-2fa" onchange="updateRiskAssessment()" class="rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700">
+                                                <span>2FA / MFA ჩართულია</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:bg-slate-800/50">
+                                                <input type="checkbox" id="chk-backups" onchange="updateRiskAssessment()" class="rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700">
+                                                <span>ყოველდღიური Backup</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:bg-slate-800/50">
+                                                <input type="checkbox" id="chk-audit" onchange="updateRiskAssessment()" class="rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700">
+                                                <span>წლიური აუდიტი</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:bg-slate-800/50">
+                                                <input type="checkbox" id="chk-vpn" onchange="updateRiskAssessment()" class="rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700">
+                                                <span>VPN / Encrypted Tunnel</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Result Meter -->
+                            <div class="lg:col-span-6 bg-slate-900/80 rounded-2xl p-6 sm:p-8 border border-slate-800 text-center space-y-6">
+                                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400">სავარაუდო უსაფრთხოების ქულა</h3>
+                                
+                                <div class="relative w-40 h-40 mx-auto flex items-center justify-center">
+                                    <!-- Circular Progress Indicator -->
+                                    <div id="score-circle" class="w-full h-full rounded-full border-8 border-amber-500/30 border-t-amber-500 flex items-center justify-center transition-all duration-500">
+                                        <span id="score-text" class="text-4xl font-extrabold text-white">65%</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span id="risk-badge" class="px-4 py-1.5 rounded-full text-xs font-bold uppercase bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                                        ზომიერი რისკი
+                                    </span>
+                                    <p id="risk-desc" class="text-xs text-slate-400 mt-3 max-w-sm mx-auto">
+                                        რეკომენდებულია პენეტრაციული ტესტირება და თანამშრომლების 2FA ავთენტიფიკაციის სრული დანერგვა.
+                                    </p>
+                                </div>
+
+                                <button onclick="navigateTo('audit')" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm transition-colors shadow-lg">
+                                    დეტალური აუდიტის მოთხოვნა
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="py-20 bg-slate-950/40 border-t border-slate-800/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center space-y-3 mb-12">
+                        <h2 class="text-3xl font-extrabold text-white">რას ამბობენ ჩვენი პარტნიორები</h2>
+                        <p class="text-slate-400 text-sm">ნდობა, რომელიც წლების განმავლობაში შევქმენით</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                            <div class="flex text-amber-400 text-xs space-x-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm italic">
+                                "Aegis Tech-ის ჩატარებული Pen-Test-ის წყალობით აღმოვაჩინეთ კრიტიკული მოწყვლადობები ჩვენს საბანკო სისტემაში სანამ ის პროდუქტივში გაშვებოდა."
+                            </p>
+                            <div class="pt-4 border-t border-slate-800 flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-brand-glow">
+                                    გი
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">გიორგი იოსელიანი</div>
+                                    <div class="text-xs text-slate-500">CTO, FinTech Georgia</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                            <div class="flex text-amber-400 text-xs space-x-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm italic">
+                                "ISO 27001 სერტიფიცირების პროცესი მათ გუნდთან ერთად უმარტივესად გავიარეთ. პროფესიონალიზმი უმაღლეს დონეზეა."
+                            </p>
+                            <div class="pt-4 border-t border-slate-800 flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-indigo-400">
+                                    ნბ
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">ნინო ბერიძე</div>
+                                    <div class="text-xs text-slate-500">Head of IT, HealthCare Group</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                            <div class="flex text-amber-400 text-xs space-x-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm italic">
+                                "24/7 SOC მონიტორინგი გვაძლევს სრულ სიმშვიდეს. შეტევების იდენტიფიცირება ხდება მყისიერად."
+                            </p>
+                            <div class="pt-4 border-t border-slate-800 flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-emerald-400">
+                                    დმ
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">დავით მესხი</div>
+                                    <div class="text-xs text-slate-500">Founder, Logistics Pro</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- PAGE 2: INTERACTIVE AUDIT REQUEST & QUOTE  -->
+        <!-- ========================================== -->
+        <div id="page-audit" class="page-content hidden">
+            
+            <section class="py-12 lg:py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center space-y-4 mb-12">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-glow bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+                            ინტერაქტიული აუდიტის კონფიგურატორი
+                        </span>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-white">მოითხოვეთ ინდივიდუალური აუდიტი</h1>
+                        <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                            შეავსეთ ნაბიჯ-ნაბიჯ ფორმა, გამოიანგარიშეთ სავარაუდო ღირებულება და დაჯავშნეთ უფასო კონსულტაცია.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        
+                        <!-- Multi-Step Interactive Form -->
+                        <div class="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800">
+                            
+                            <!-- Wizard Progress Indicator -->
+                            <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-800">
+                                <div id="step-tab-1" class="step-indicator flex items-center space-x-2 text-brand-glow font-semibold text-sm">
+                                    <span class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">1</span>
+                                    <span>ინფრასტრუქტურა</span>
+                                </div>
+                                <div class="w-12 h-0.5 bg-slate-800"></div>
+                                <div id="step-tab-2" class="step-indicator flex items-center space-x-2 text-slate-500 font-semibold text-sm">
+                                    <span class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">2</span>
+                                    <span>სერვისები</span>
+                                </div>
+                                <div class="w-12 h-0.5 bg-slate-800"></div>
+                                <div id="step-tab-3" class="step-indicator flex items-center space-x-2 text-slate-500 font-semibold text-sm">
+                                    <span class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">3</span>
+                                    <span>კონტაქტი</span>
+                                </div>
+                            </div>
+
+                            <!-- Step 1 Form Content -->
+                            <div id="wizard-step-1" class="wizard-step space-y-6">
+                                <h3 class="text-xl font-bold text-white">1. აირჩიეთ კომპანიის ზომა და ტიპი</h3>
+                                
+                                <div class="space-y-4">
+                                    <label class="block text-sm font-medium text-slate-300">ორგანიზაციის სექტორი</label>
+                                    <select id="company-sector" onchange="calculateQuote()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                        <option value="fintech">ფინანსები & FinTech</option>
+                                        <option value="healthcare">ჯანდაცვა & ფარმაცევტული</option>
+                                        <option value="ecommerce">E-Commerce & ონლაინ ვაჭრობა</option>
+                                        <option value="corporate">კორპორატიული / IT</option>
+                                    </select>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <label class="block text-sm font-medium text-slate-300">სერვერების / IP მისამართების რაოდენობა</label>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <button type="button" onclick="setServerCount(10, this)" class="server-btn px-4 py-3 rounded-xl border border-brand-500 bg-brand-500/20 text-white text-sm font-medium">1 - 10</button>
+                                        <button type="button" onclick="setServerCount(50, this)" class="server-btn px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-300 text-sm font-medium">10 - 50</button>
+                                        <button type="button" onclick="setServerCount(100, this)" class="server-btn px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-300 text-sm font-medium">50+</button>
+                                    </div>
+                                </div>
+
+                                <div class="pt-6 flex justify-end">
+                                    <button type="button" onclick="nextWizardStep(2)" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm transition-colors flex items-center space-x-2">
+                                        <span>შემდეგი</span>
+                                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 Form Content -->
+                            <div id="wizard-step-2" class="wizard-step hidden space-y-6">
+                                <h3 class="text-xl font-bold text-white">2. აირჩიეთ საჭირო სერვისები</h3>
+                                
+                                <div class="space-y-3">
+                                    <label class="flex items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800 cursor-pointer hover:border-slate-700">
+                                        <div class="flex items-center space-x-3">
+                                            <input type="checkbox" value="pentest" onchange="calculateQuote()" class="quote-service-chk rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700" checked>
+                                            <div>
+                                                <div class="text-sm font-semibold text-white">Penetration Testing (შეღწევადობა)</div>
+                                                <div class="text-xs text-slate-400">ვებ და სერვერული უსაფრთხოების ტესტირება</div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-bold text-brand-glow">+1,200 ₾</span>
+                                    </label>
+
+                                    <label class="flex items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800 cursor-pointer hover:border-slate-700">
+                                        <div class="flex items-center space-x-3">
+                                            <input type="checkbox" value="iso" onchange="calculateQuote()" class="quote-service-chk rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700">
+                                            <div>
+                                                <div class="text-sm font-semibold text-white">ISO 27001 Compliance Audit</div>
+                                                <div class="text-xs text-slate-400">სტანდარტებთან შესაბამისობის შეფასება</div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-bold text-brand-glow">+1,800 ₾</span>
+                                    </label>
+
+                                    <label class="flex items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800 cursor-pointer hover:border-slate-700">
+                                        <div class="flex items-center space-x-3">
+                                            <input type="checkbox" value="soc" onchange="calculateQuote()" class="quote-service-chk rounded text-brand-600 focus:ring-brand-500 bg-slate-800 border-slate-700">
+                                            <div>
+                                                <div class="text-sm font-semibold text-white">24/7 SOC მონიტორინგი (თვიური)</div>
+                                                <div class="text-xs text-slate-400">რეალური დროის უსაფრთხოება</div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-bold text-brand-glow">+2,500 ₾</span>
+                                    </label>
+                                </div>
+
+                                <div class="pt-6 flex justify-between">
+                                    <button type="button" onclick="nextWizardStep(1)" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-sm transition-colors">
+                                        უკან
+                                    </button>
+                                    <button type="button" onclick="nextWizardStep(3)" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm transition-colors flex items-center space-x-2">
+                                        <span>შემდეგი</span>
+                                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 Form Content -->
+                            <div id="wizard-step-3" class="wizard-step hidden space-y-6">
+                                <h3 class="text-xl font-bold text-white">3. საკონტაქტო ინფორმაცია</h3>
+                                
+                                <form id="audit-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-300 mb-1">კომპანიის დასახელება</label>
+                                        <input type="text" required placeholder="მაგ: შპს ტექნოლოგიები" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                    </div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-slate-300 mb-1">საკონტაქტო პირი</label>
+                                            <input type="text" required placeholder="სახელი, გვარი" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-slate-300 mb-1">ელ-ფოსტა</label>
+                                            <input type="email" required placeholder="info@company.ge" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                        </div>
+                                    </div>
+
+                                    <div class="pt-4 flex justify-between">
+                                        <button type="button" onclick="nextWizardStep(2)" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-sm transition-colors">
+                                            უკან
+                                        </button>
+                                        <button type="submit" class="px-8 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20">
+                                            მოთხოვნის გაგზავნა
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <!-- Summary & Pricing Box -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 sticky top-28 space-y-6">
+                                <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-4">შეკვეთის ჯამური კალკულაცია</h3>
+
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex justify-between text-slate-400">
+                                        <span>სექტორი:</span>
+                                        <span id="summary-sector" class="text-white font-medium">FinTech</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-400">
+                                        <span>სერვერები:</span>
+                                        <span id="summary-servers" class="text-white font-medium">1 - 10 IP</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-400">
+                                        <span>არჩეული სერვისები:</span>
+                                        <span id="summary-services-count" class="text-brand-glow font-medium">1 სერვისი</span>
+                                    </div>
+                                </div>
+
+                                <div class="pt-4 border-t border-slate-800 space-y-2">
+                                    <div class="text-xs text-slate-400">სავარაუდო ინვესტიცია:</div>
+                                    <div class="text-4xl font-extrabold text-white gradient-text" id="calculated-total">
+                                        1,200 ₾
+                                    </div>
+                                    <div class="text-[11px] text-slate-500">
+                                        *საბოლოო ფასი დაზუსტდება პირველადი ტექნიკური ბრიფინგის შემდეგ.
+                                    </div>
+                                </div>
+
+                                <!-- Booking Consultation Simulator -->
+                                <div class="pt-4 border-t border-slate-800 space-y-3">
+                                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                                        <i class="fa-solid fa-calendar-check text-brand-glow mr-1"></i> დაჯავშნეთ კონსულტაცია
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 text-xs">
+                                        <button onclick="selectTimeSlot(this)" class="time-slot-btn p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:border-brand-500 text-center">
+                                            ხვალ / 14:00
+                                        </button>
+                                        <button onclick="selectTimeSlot(this)" class="time-slot-btn p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:border-brand-500 text-center">
+                                            ხვალ / 16:30
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- FAQ Accordion Section -->
+                    <div class="mt-20 max-w-4xl mx-auto space-y-6">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-2xl font-bold text-white">ხშირად დასმული შეკითხვები</h2>
+                            <p class="text-slate-400 text-sm">ყველაფერი, რაც უნდა იცოდეთ აუდიტის პროცესზე</p>
+                        </div>
+
+                        <div class="space-y-4 pt-4">
+                            <!-- FAQ Item 1 -->
+                            <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
+                                <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-800/40 transition-colors">
+                                    <span>რამდენ ხანს გრძელდება Penetration Testing პროცესი?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-glow transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/50 pt-3">
+                                    სისტემის სირთულიდან გამომდინარე, სტანდარტული ტესტირება გრძელდება 3-დან 7 სამუშაო დღემდე. პროცესის დასრულებისთანავე იღებთ დეტალურ რეპორტს აღმოჩენილი ხარვეზებითა და მათი აღმოფხვრის გზებით.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
+                                <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-800/40 transition-colors">
+                                    <span>შეაფერხებს თუ არა აუდიტი კომპანიის ყოველდღიურ მუშაობას?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-glow transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/50 pt-3">
+                                    არა. ჩვენი ტესტირებები ტარდება წინასწარ შეთანხმებულ საათებში (ხშირად არასამუშაო საათებში) უსაფრთხო სიმულაციური მეთოდოლოგიით, რაც გამორიცხავს სერვისების გაჩერებას.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
+                                <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-800/40 transition-colors">
+                                    <span>ფორმდება თუ არა კონფიდენციალურობის ხელშეკრულება (NDA)?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-glow transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/50 pt-3">
+                                    დიახ, ნებისმიერი ტიპის ტექნიკური აუდიტის ან კონსულტაციის დაწყებამდე სავალდებულო წესით ფორმდება მკაცრი NDA ხელშეკრულება.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 text-slate-400 text-sm py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-base">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">AEGIS<span class="text-brand-glow">TECH</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        კორპორატიული კიბერუსაფრთხოება, Cloud არქიტექტურა და IT აუდიტი საერთაშორისო სტანდარტებით.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-4">ნავიგაცია</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" onclick="navigateTo('home'); return false;" class="hover:text-white transition-colors">მთავარი</a></li>
+                        <li><a href="#" onclick="navigateTo('home'); return false;" class="hover:text-white transition-colors">სერვისები</a></li>
+                        <li><a href="#" onclick="navigateTo('audit'); return false;" class="hover:text-white transition-colors">აუდიტი & კალკულატორი</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-4">სერვისები</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><span class="text-slate-400">Penetration Testing</span></li>
+                        <li><span class="text-slate-400">SOC 24/7 Monitoring</span></li>
+                        <li><span class="text-slate-400">ISO 27001 Compliance</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-4">კონტაქტი</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><i class="fa-solid fa-location-dot text-brand-glow mr-2"></i> თბილისი, ჭავჭავაძის გამზ. 37</li>
+                        <li><i class="fa-solid fa-envelope text-brand-glow mr-2"></i> contact@aegistech.ge</li>
+                        <li><i class="fa-solid fa-phone text-brand-glow mr-2"></i> +995 (32) 2 900 000</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <div>&copy; 2026 Aegis Tech. ყველა უფლება დაცულია.</div>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-linkedin text-base"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-github text-base"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter text-base"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2"></div>
+
+    <script>
+        // State Management
+        let selectedServerCount = 10;
+
+        // Navigation Logic (Page Switcher)
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('block');
+            });
+
+            // Show target page
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+            }
+
+            // Update Nav Buttons State
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeNavBtn = document.getElementById(`nav-btn-${pageId}`);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+                activeNavBtn.classList.remove('text-slate-400');
+            }
+
+            // Scroll to top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const iconMobile = document.getElementById('theme-icon-mobile');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                if (icon) icon.className = 'fa-solid fa-sun text-amber-500';
+                if (iconMobile) iconMobile.className = 'fa-solid fa-sun text-amber-500';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                if (icon) icon.className = 'fa-solid fa-moon';
+                if (iconMobile) iconMobile.className = 'fa-solid fa-moon';
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Service Filter Tabs (Page 1)
+        function filterServices(category) {
+            // Update Tab Active UI
+            document.querySelectorAll('.service-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-slate-800/80', 'text-slate-300');
+            });
+
+            const activeBtn = document.querySelector(`.service-tab-btn[data-category="${category}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+                activeBtn.classList.remove('bg-slate-800/80', 'text-slate-300');
+            }
+
+            // Filter Cards
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Risk Score Calculator (Page 1)
+        function updateRiskAssessment() {
+            const empCount = parseInt(document.getElementById('emp-range').value);
+            document.getElementById('emp-count-val').innerText = empCount;
+
+            const chk2fa = document.getElementById('chk-2fa').checked;
+            const chkBackups = document.getElementById('chk-backups').checked;
+            const chkAudit = document.getElementById('chk-audit').checked;
+            const chkVpn = document.getElementById('chk-vpn').checked;
+
+            let score = 40; // Base score
+
+            if (chk2fa) score += 20;
+            if (chkBackups) score += 15;
+            if (chkAudit) score += 15;
+            if (chkVpn) score += 10;
+
+            // Penalty for employee volume without controls
+            if (empCount > 100 && !chk2fa) score -= 15;
+
+            // Clamp score 10-99
+            score = Math.max(15, Math.min(99, score));
+
+            const circle = document.getElementById('score-circle');
+            const scoreText = document.getElementById('score-text');
+            const badge = document.getElementById('risk-badge');
+            const desc = document.getElementById('risk-desc');
+
+            scoreText.innerText = `${score}%`;
+
+            if (score >= 80) {
+                circle.className = "w-full h-full rounded-full border-8 border-emerald-500/30 border-t-emerald-500 flex items-center justify-center transition-all duration-500";
+                badge.className = "px-4 py-1.5 rounded-full text-xs font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                badge.innerText = "მაღალი დაცულობა";
+                desc.innerText = "თქვენი ინფრასტრუქტურა კარგად არის დაცული. რეკომენდებულია პერიოდული მონიტორინგი.";
+            } else if (score >= 50) {
+                circle.className = "w-full h-full rounded-full border-8 border-amber-500/30 border-t-amber-500 flex items-center justify-center transition-all duration-500";
+                badge.className = "px-4 py-1.5 rounded-full text-xs font-bold uppercase bg-amber-500/20 text-amber-400 border border-amber-500/30";
+                badge.innerText = "ზომიერი რისკი";
+                desc.innerText = "რეკომენდებულია პენეტრაციული ტესტირება და თანამშრომლების 2FA ავთენტიფიკაციის სრული დანერგვა.";
+            } else {
+                circle.className = "w-full h-full rounded-full border-8 border-red-500/30 border-t-red-500 flex items-center justify-center transition-all duration-500";
+                badge.className = "px-4 py-1.5 rounded-full text-xs font-bold uppercase bg-red-500/20 text-red-400 border border-red-500/30";
+                badge.innerText = "კრიტიკული რისკი";
+                desc.innerText = "საჭიროებს დაუყოვნებლივ უსაფრთხოების აუდიტს და კრიტიკული ხვრელების დახურვას.";
+            }
+        }
+
+        // Select Service from Page 1 to Page 2
+        function selectServiceForAudit(serviceName) {
+            navigateTo('audit');
+            showToast(`სერვისი "${serviceName}" არჩეულია აუდიტისთვის`);
+        }
+
+        // Wizard Step Switcher (Page 2)
+        function nextWizardStep(stepNumber) {
+            document.querySelectorAll('.wizard-step').forEach(step => step.classList.add('hidden'));
+            document.getElementById(`wizard-step-${stepNumber}`).classList.remove('hidden');
+
+            // Indicators UI update
+            [1, 2, 3].forEach(i => {
+                const tab = document.getElementById(`step-tab-${i}`);
+                if (i <= stepNumber) {
+                    tab.classList.remove('text-slate-500');
+                    tab.classList.add('text-brand-glow');
+                } else {
+                    tab.classList.remove('text-brand-glow');
+                    tab.classList.add('text-slate-500');
+                }
+            });
+        }
+
+        // Server count buttons
+        function setServerCount(count, btnElement) {
+            selectedServerCount = count;
+            document.querySelectorAll('.server-btn').forEach(btn => {
+                btn.classList.remove('border-brand-500', 'bg-brand-500/20', 'text-white');
+                btn.classList.add('border-slate-700', 'bg-slate-900', 'text-slate-300');
+            });
+
+            btnElement.classList.add('border-brand-500', 'bg-brand-500/20', 'text-white');
+            btnElement.classList.remove('border-slate-700', 'bg-slate-900', 'text-slate-300');
+
+            calculateQuote();
+        }
+
+        // Interactive Quote Calculator
+        function calculateQuote() {
+            let total = 800; // base price
+
+            // Server count modifier
+            if (selectedServerCount === 50) total += 600;
+            if (selectedServerCount === 100) total += 1400;
+
+            // Checked services
+            const checkedServices = document.querySelectorAll('.quote-service-chk:checked');
+            checkedServices.forEach(chk => {
+                if (chk.value === 'pentest') total += 1200;
+                if (chk.value === 'iso') total += 1800;
+                if (chk.value === 'soc') total += 2500;
+            });
+
+            // Sector
+            const sectorSelect = document.getElementById('company-sector');
+            const sectorName = sectorSelect.options[sectorSelect.selectedIndex].text;
+
+            // Summary UI
+            document.getElementById('calculated-total').innerText = `${total.toLocaleString('ka-GE')} ₾`;
+            document.getElementById('summary-sector').innerText = sectorName;
+            document.getElementById('summary-servers').innerText = selectedServerCount === 10 ? '1 - 10 IP' : (selectedServerCount === 50 ? '10 - 50 IP' : '50+ IP');
+            document.getElementById('summary-services-count').innerText = `${checkedServices.length} სერვისი`;
+        }
+
+        // Consult Slot selector
+        function selectTimeSlot(btn) {
+            document.querySelectorAll('.time-slot-btn').forEach(b => {
+                b.classList.remove('border-brand-500', 'bg-brand-600', 'text-white');
+                b.classList.add('bg-slate-900', 'border-slate-700', 'text-slate-300');
+            });
+            btn.classList.add('border-brand-500', 'bg-brand-600', 'text-white');
+            btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+            showToast("დროის სლოტი არჩეულია!");
+        }
+
+        // FAQ Toggle Accordion
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Toast Notifications
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'glass-panel text-white text-xs px-4 py-3 rounded-xl border border-brand-500/40 shadow-xl flex items-center space-x-2 animate-bounce';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Handle Form Submit Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("თქვენი მოთხოვნა წარმატებით გაიგზავნა! მალე დაგიკავშირდებით.");
+            setTimeout(() => {
+                navigateTo('home');
+                nextWizardStep(1);
+            }, 2000);
+        }
+
+        // Initialize on Window Load
+        window.onload = function() {
+            updateRiskAssessment();
+            calculateQuote();
+        };
+    </script>
+</body>
+</html>
